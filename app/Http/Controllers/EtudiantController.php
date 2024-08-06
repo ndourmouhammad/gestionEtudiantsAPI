@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEtudiantRequest;
+use App\Http\Requests\UpdateEtudiantRequest;
 use App\Models\Etudiant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class EtudiantController extends Controller
 {
@@ -42,9 +44,17 @@ class EtudiantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateEtudiantRequest $request, Etudiant $etudiant)
     {
-        //
+        $etudiant->fill($request->validated());
+        if ($request->hasFile('photo')) {
+            if (File::exists(public_path($etudiant->photo))) {
+                File::delete(public_path($etudiant->photo));
+            }
+            $etudiant->photo = $request->file('photo')->store('public/photos');
+        }
+        $etudiant->update();
+        return $this->customJsonResponse("Etudiant mis à jour avec succès", $etudiant);
     }
 
     /**
