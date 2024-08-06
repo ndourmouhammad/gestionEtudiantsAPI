@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email');
             $table->string('telephone');
-            $table->string('mot_de_passe');
+            $table->string('mot_de_passe')->nullable();
+            $table->date('date_naissance');
             $table->string('adresse');
             $table->string('matricule')->unique();
             $table->string('photo')->nullable();

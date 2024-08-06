@@ -24,6 +24,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033501",
                 'matricule' => "SFA/2022/001",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-01-01",
             ],
 
             [
@@ -35,6 +36,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033500",
                 'matricule' => "SFA/2022/002",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-06-01",
             ],
 
             [
@@ -46,6 +48,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033502",
                 'matricule' => "SFA/2022/003",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-07-01",
             ],
             [
                 'nom' => "Cissé",
@@ -56,6 +59,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033504",
                 'matricule' => "SFA/2022/004",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-08-01",
             ],
             [
                 'nom' => "Sagna",
@@ -66,6 +70,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033505",
                 'matricule' => "SFA/2022/005",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-09-01",
             ],
             [
                 'nom' => "Ndour",
@@ -76,6 +81,7 @@ class EtudiantSeeder extends Seeder
                 'telephone' => "781033507",
                 'matricule' => "SFA/2022/006",
                 'photo' => "photo.jpg",
+                'date_naissance' => "2000-10-01",
             ]
         ];
         foreach ($etudiants as $etudiant) {
