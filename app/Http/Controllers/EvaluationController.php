@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Etudiant;
+use App\Models\Evaluation;
 use App\Http\Requests\StoreEvaluationRequest;
 use App\Http\Requests\UpdateEvaluationRequest;
-use App\Models\Evaluation;
 
 class EvaluationController extends Controller
 {
@@ -13,7 +14,11 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        //
+        // Récupérer tous les étudiants avec leurs évaluations et les matières
+        $etudiants = Etudiant::with('evaluations.matiere')->get();
+
+        // Retourner les données en format JSON
+        return response()->json($etudiants);
     }
 
     /**
@@ -27,9 +32,21 @@ class EvaluationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEvaluationRequest $request)
+    public function store(StoreEvaluationRequest $request, $etudiantId)
     {
-        //
+        // Récupérer l'étudiant par son ID
+        $etudiant = Etudiant::findOrFail($etudiantId);
+
+        // Créer une nouvelle évaluation avec les données validées et l'associer à l'étudiant
+        $evaluation = new Evaluation($request->validated());
+        $evaluation->etudiant_id = $etudiant->id;
+        $evaluation->save();
+
+        // Retourner une réponse JSON avec succès
+        return response()->json([
+            'message' => 'Évaluation ajoutée avec succès',
+            'evaluation' => $evaluation
+        ], 201);
     }
 
     /**
@@ -37,7 +54,11 @@ class EvaluationController extends Controller
      */
     public function show(Evaluation $evaluation)
     {
-        //
+        // Récupérer l'étudiant avec ses évaluations et les matières
+        $etudiant = Etudiant::with('evaluations.matiere')->findOrFail($evaluation->etudiant_id);
+
+        // Retourner les données en format JSON
+        return response()->json($etudiant);
     }
 
     /**
@@ -51,9 +72,20 @@ class EvaluationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEvaluationRequest $request, Evaluation $evaluation)
+    // Méthode pour mettre à jour une évaluation
+    public function update(UpdateEvaluationRequest $request, $id)
     {
-        //
+        // Récupérer l'évaluation par son ID
+        $evaluation = Evaluation::findOrFail($id);
+
+        // Mettre à jour l'évaluation avec les données validées
+        $evaluation->update($request->validated());
+
+        // Retourner une réponse JSON avec succès
+        return response()->json([
+            'message' => 'Évaluation mise à jour avec succès',
+            'evaluation' => $evaluation
+        ], 200);
     }
 
     /**
@@ -61,6 +93,8 @@ class EvaluationController extends Controller
      */
     public function destroy(Evaluation $evaluation)
     {
-        //
+        // Supprimer l'évaluation
+        $evaluation->delete();
+        return response()->json(['message' => 'Évaluation supprimée avec succès']);
     }
 }

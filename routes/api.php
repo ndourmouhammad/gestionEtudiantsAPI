@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\EvaluationController;
 
 
 Route::get('/user', function (Request $request) {
@@ -18,3 +19,7 @@ Route::apiResource("etudiants", EtudiantController::class)->only(["index", "stor
 Route::post("etudiants/{etudiant}", [EtudiantController::class, "update"])->name("etudiants.update");
 
 
+// Evaluations
+Route::apiResource("evaluations", EvaluationController::class)->only(["index","show", "destroy"]);
+Route::post('/etudiants/{id}/evaluations', [EvaluationController::class, 'store']);
+Route::post('/evaluations/{id}', [EvaluationController::class, 'update']);
