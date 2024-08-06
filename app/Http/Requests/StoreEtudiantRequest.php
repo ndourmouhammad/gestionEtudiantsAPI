@@ -32,7 +32,7 @@ class StoreEtudiantRequest extends FormRequest
             'date_naissance' => ['required', 'date'],
             'matricule' => ['required', 'string', 'max:255', 'unique:etudiants'],
             'mot_de_passe' => ['string', 'max:255'],
-            'photo' => ['string', 'max:255', 'mimes:jpg,jpeg,png'],
+            'photo' => ['max:2048','required','mimes:jpg,jpeg,png'],
         ];
     }
 

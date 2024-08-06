@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEtudiantRequest;
 use App\Models\Etudiant;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,15 @@ class EtudiantController extends Controller
     /**
      * Ajouter un nouvel etudiant
      */
-    public function store(Request $request)
+    public function store(StoreEtudiantRequest $request)
     {
-        //
+        $etudiant = new Etudiant();
+        $etudiant->fill($request->validated());
+        if ($request->hasFile('photo')) {
+            $etudiant->photo = $request->file('photo')->store('public/photos');
+        }
+        $etudiant->save();
+        return $this->customJsonResponse("Etudiant ajouté avec succès", $etudiant, 201);
     }
 
     /**
