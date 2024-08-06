@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\EvaluationController;
 
@@ -9,6 +10,8 @@ use App\Http\Controllers\EvaluationController;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::post("login", [AuthController::class, "login"]);
 
 Route::get("etudiants/trashed", [EtudiantController::class, "trashed"])->name("etudiants.trashed"); 
 Route::post("etudiants/{id}/restore", [EtudiantController::class, "restore"])->name("etudiants.restore");
