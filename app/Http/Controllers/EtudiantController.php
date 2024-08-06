@@ -60,8 +60,9 @@ class EtudiantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Etudiant $etudiant)
     {
-        //
+        $etudiant->delete();
+        return $this->customJsonResponse("Etudiant supprimé avec succès", null, 200);
     }
 }
