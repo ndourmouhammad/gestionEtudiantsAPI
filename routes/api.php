@@ -26,3 +26,8 @@ Route::post("etudiants/{etudiant}", [EtudiantController::class, "update"])->name
 Route::apiResource("evaluations", EvaluationController::class)->only(["index","show", "destroy"]);
 Route::post('/etudiants/{id}/evaluations', [EvaluationController::class, 'store']);
 Route::post('/evaluations/{id}', [EvaluationController::class, 'update']);
+
+Route::middleware("auth")->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout']);  
+    Route::get('/refresh', [AuthController::class, 'refreshToken']);
+});
