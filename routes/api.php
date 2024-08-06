@@ -22,3 +22,4 @@ Route::post("etudiants/{etudiant}", [EtudiantController::class, "update"])->name
 // Evaluations
 Route::apiResource("evaluations", EvaluationController::class)->only(["index","show", "destroy"]);
 Route::post('/etudiants/{id}/evaluations', [EvaluationController::class, 'store']);
+Route::post('/evaluations/{id}', [EvaluationController::class, 'update']);

@@ -72,9 +72,20 @@ class EvaluationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEvaluationRequest $request, Evaluation $evaluation)
+    // Méthode pour mettre à jour une évaluation
+    public function update(UpdateEvaluationRequest $request, $id)
     {
-        //
+        // Récupérer l'évaluation par son ID
+        $evaluation = Evaluation::findOrFail($id);
+
+        // Mettre à jour l'évaluation avec les données validées
+        $evaluation->update($request->validated());
+
+        // Retourner une réponse JSON avec succès
+        return response()->json([
+            'message' => 'Évaluation mise à jour avec succès',
+            'evaluation' => $evaluation
+        ], 200);
     }
 
     /**
