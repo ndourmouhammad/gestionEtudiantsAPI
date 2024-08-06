@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 class StoreEvaluationRequest extends FormRequest
 {
     /**
@@ -11,7 +12,7 @@ class StoreEvaluationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,19 @@ class StoreEvaluationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'valeur' => 'required|numeric|min:0|max:20',
+            'date' => 'required|date',
+            'matiere_id' => 'required|exists:matieres,id',
         ];
     }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'errors'      => $validator->errors()
+        ], 422));
+    }
+
+    
 }
