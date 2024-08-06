@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('matricule')->unique();
             $table->string('photo')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
