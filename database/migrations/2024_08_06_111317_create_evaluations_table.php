@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('valeur');
             $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
             $table->foreignId('etudiant_id')->constrained('etudiants')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

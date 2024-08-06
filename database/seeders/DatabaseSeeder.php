@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             EtudiantSeeder::class,
             UniteEnseignementSeeder::class,
             MatiereSeeder::class,
-            EvaluationSeeder::class
+            EvaluationSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->foreignId('ue_id')->constrained('unite_enseignements')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
