@@ -32,9 +32,21 @@ class EvaluationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEvaluationRequest $request)
+    public function store(StoreEvaluationRequest $request, $etudiantId)
     {
-        //
+        // Récupérer l'étudiant par son ID
+        $etudiant = Etudiant::findOrFail($etudiantId);
+
+        // Créer une nouvelle évaluation avec les données validées et l'associer à l'étudiant
+        $evaluation = new Evaluation($request->validated());
+        $evaluation->etudiant_id = $etudiant->id;
+        $evaluation->save();
+
+        // Retourner une réponse JSON avec succès
+        return response()->json([
+            'message' => 'Évaluation ajoutée avec succès',
+            'evaluation' => $evaluation
+        ], 201);
     }
 
     /**
