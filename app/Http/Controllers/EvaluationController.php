@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Etudiant;
+use App\Models\Evaluation;
 use App\Http\Requests\StoreEvaluationRequest;
 use App\Http\Requests\UpdateEvaluationRequest;
-use App\Models\Evaluation;
 
 class EvaluationController extends Controller
 {
@@ -13,7 +14,11 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        //
+        // Récupérer tous les étudiants avec leurs évaluations et les matières
+        $etudiants = Etudiant::with('evaluations.matiere')->get();
+
+        // Retourner les données en format JSON
+        return response()->json($etudiants);
     }
 
     /**
@@ -37,7 +42,11 @@ class EvaluationController extends Controller
      */
     public function show(Evaluation $evaluation)
     {
-        //
+        // Récupérer l'étudiant avec ses évaluations et les matières
+        $etudiant = Etudiant::with('evaluations.matiere')->findOrFail($evaluation->etudiant_id);
+
+        // Retourner les données en format JSON
+        return response()->json($etudiant);
     }
 
     /**
