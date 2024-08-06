@@ -65,4 +65,33 @@ class EtudiantController extends Controller
         $etudiant->delete();
         return $this->customJsonResponse("Etudiant supprimé avec succès", null, 200);
     }
+
+    // Restaurer un etudiant
+    public function restore($id)
+    {
+        $etudiant = Etudiant::onlyTrashed()->where('id', $id)->first();
+        if (!$etudiant) {
+            return $this->customJsonResponse("Etudiant inexistant", null, 404);
+        }
+        $etudiant->restore();
+        return $this->customJsonResponse("Etudiant reprise avec succès", $etudiant);
+    }
+
+    // Supprimer definitivement un etudiant
+    public function forceDelete($id)
+    {
+        $etudiant = Etudiant::onlyTrashed()->where('id', $id)->first();
+        if (!$etudiant) {
+            return $this->customJsonResponse("Etudiant inexistant", null, 404);
+        }
+        $etudiant->forceDelete();
+        return $this->customJsonResponse("Etudiant supprimé definitivement avec succès", null, 200);
+    }
+
+    // Liste des etudiants supprimés
+    public function trashed()
+    {
+        $etudiants = Etudiant::onlyTrashed()->get();
+        return $this->customJsonResponse("Liste des etudiants supprimés", $etudiants);
+    }
 }
