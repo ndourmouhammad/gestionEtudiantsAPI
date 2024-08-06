@@ -17,7 +17,7 @@ class EtudiantController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ajouter un nouvel etudiant
      */
     public function store(Request $request)
     {
@@ -27,9 +27,9 @@ class EtudiantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Etudiant $etudiant)
     {
-        //
+        return $this->customJsonResponse("Etudiant récupéré avec succès", $etudiant);
     }
 
     /**
