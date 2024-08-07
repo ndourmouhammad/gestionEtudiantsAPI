@@ -15,7 +15,7 @@ namespace App\Http\Controllers\Annotations ;
  *     bearerFormat="JWT"),
 
  * @OA\Info(
- *     title="Your API Title",
+ *     title="Gestion des étudiants",
  *     description="Your API Description",
  *     version="1.0.0"),
 
