@@ -217,7 +217,7 @@
                                 }
                             },
                             "example": {
-                                "email": "alpha@gmail.com",
+                                "email": "sambaBerry@gmail.com",
                                 "password": "password"
                             }
                         }
@@ -273,7 +273,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "delete note",
+                        "name": "evaluation",
                         "type": "string"
                     },
                     {
@@ -332,7 +332,7 @@
                 ]
             }
         },
-        "/api/evaluations/etudiants/{id}": {
+        "/api/evaluations/etudiants/4": {
             "post": {
                 "summary": "Ajouter une note",
                 "description": "",
@@ -407,9 +407,9 @@
                                 }
                             },
                             "example": {
-                                "valeur": "15",
+                                "valeur": "10",
                                 "date": "2024-08-10",
-                                "matiere_id": "5"
+                                "matiere_id": "4"
                             }
                         }
                     }
@@ -464,7 +464,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "update note",
+                        "name": "id",
                         "type": "string"
                     },
                     {
@@ -639,7 +639,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "vider",
+                        "name": "id",
                         "type": "string"
                     },
                     {
@@ -698,7 +698,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "restore student",
+                        "name": "id",
                         "type": "string"
                     },
                     {
@@ -757,7 +757,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "delete",
+                        "name": "etudiant",
                         "type": "string"
                     },
                     {
@@ -814,7 +814,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "update",
+                        "name": "etudiant",
                         "type": "string"
                     },
                     {
@@ -1013,12 +1013,12 @@
                                 }
                             },
                             "example": {
-                                "prenom": "Anna",
+                                "prenom": "Marie",
                                 "nom": "Marone",
                                 "adresse": "Fatick",
-                                "telephone": "781033599",
-                                "matricule": "SFA\\/2022\\/099",
-                                "email": "annamarone@gmail.com",
+                                "telephone": "781033578",
+                                "matricule": "SFA\\/2022\\/000",
+                                "email": "annamarone@gmail.co",
                                 "photo": {
                                     "type": "string",
                                     "format": "binary"

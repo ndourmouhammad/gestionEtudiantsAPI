@@ -43,7 +43,7 @@ Route::middleware("auth")->group(function () {
     });
     
 
-    // authentification
+    // Déconnexion et refresh
 
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/refresh', [AuthController::class, 'refreshToken']);

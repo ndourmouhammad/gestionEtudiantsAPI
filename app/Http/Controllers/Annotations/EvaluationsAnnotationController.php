@@ -36,7 +36,7 @@ namespace App\Http\Controllers\Annotations ;
  * @OA\Response(response="401", description="Unauthorized"),
  * @OA\Response(response="403", description="Forbidden"),
  * @OA\Response(response="404", description="Not Found"),
- *     @OA\Parameter(in="path", name="delete note", required=false, @OA\Schema(type="string")
+ *     @OA\Parameter(in="path", name="evaluation", required=false, @OA\Schema(type="string")
  * ),
  *     @OA\Parameter(in="header", name="User-Agent", required=false, @OA\Schema(type="string")
  * ),
@@ -63,7 +63,7 @@ namespace App\Http\Controllers\Annotations ;
 
 
  * @OA\POST(
- *     path="/api/evaluations/etudiants/{id}",
+ *     path="/api/evaluations/etudiants/4",
  *     summary="Ajouter une note",
  *     description="",
  *         security={
@@ -106,7 +106,7 @@ namespace App\Http\Controllers\Annotations ;
  * @OA\Response(response="400", description="Bad Request"),
  * @OA\Response(response="401", description="Unauthorized"),
  * @OA\Response(response="403", description="Forbidden"),
- *     @OA\Parameter(in="path", name="update note", required=false, @OA\Schema(type="string")
+ *     @OA\Parameter(in="path", name="id", required=false, @OA\Schema(type="string")
  * ),
  *     @OA\Parameter(in="header", name="User-Agent", required=false, @OA\Schema(type="string")
  * ),
